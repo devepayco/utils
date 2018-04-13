@@ -1,0 +1,55 @@
+<!-- ==================== ENVIAR PETICIONES A LA API USANDO JQUERY AJAX Y POST ====================================
+==============================================================================================================/ -->
+<!DOCTYPE html>
+<html lang="es">  
+  <head>    
+    <title>Título de la WEB</title>    
+    <meta charset="UTF-8">
+    <meta name="title" content="Título de la WEB">
+    <meta name="description" content="Descripción de la WEB">    
+  </head>  
+  <body>    
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
+    <script>
+
+        /*==================== CREAR TOKEN ==================================*/
+
+        //PARAMETROS
+        data = {
+            "token_card": "AQUÍ_EL_TOKEN_DE_LA_TARJETA",
+            "name":  "Joe Doe",
+            "email": "joe@payco.co",
+            "phone": "3005234329",
+            "default": "true",
+            "public_key": "AQUÍ_SU_PUBLIC_KEY"
+        }
+
+        //URL API
+        urlapp = 'https://api.secure.payco.co/payment/v1/customer/create'
+
+        //ENVIAR PETICION USANDO JQUERY POST
+        $.post(urlapp, data,function(response) {
+            console.log(response);
+        });
+
+
+        //ENVIAR PETICION USANDO JQUERY AJAX
+        $.ajax({
+            url: urlapp,
+            type: 'post',
+            data: data,
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+                "Accept": "application/json",
+            },
+            dataType: 'json',
+            success: function (data) {
+                console.info(data);
+            }
+        });
+    </script>
+  </body>  
+</html>
+
+
